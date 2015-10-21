@@ -9,7 +9,6 @@ JVE (Java Video Encryptor) is very simple Java Swing App that can be used to pro
 
 You can use this library for web or mobile video local/streaming library that supports AES or other decrypt methods, e.g
 - *Libmedia* http://libeasy.alwaysdata.net/ (Native Android).
-- *Radiantmediaplayer* https://www.radiantmediaplayer.com/ (HTML5 Web Media Player)
 
 Run **app.jar** to try it.
 
