@@ -51,6 +51,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.TextField;
+import java.awt.Window.Type;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class Main extends JFrame{
 
@@ -61,6 +63,7 @@ public class Main extends JFrame{
 	private static JTextField textField_1;
 	private JButton btnChoose;
 	private static JTextField txtEncryptionCode;
+	private JLabel lblmkhuda;
 	/**
 	 * Launch the application.
 	 */
@@ -83,26 +86,31 @@ public class Main extends JFrame{
 	 */
 	public Main() {
 		setResizable(false);
-		setTitle("AES MP4 Encryption");
+		setTitle("AES MP4 Encryption v.1.1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("95px"),
+				ColumnSpec.decode("100px"),
 				ColumnSpec.decode("171dlu:grow"),},
 			new RowSpec[] {
+				RowSpec.decode("40dlu"),
 				RowSpec.decode("23px"),
 				RowSpec.decode("23px"),
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
-		
-		btnChoose = new JButton("Choose .mp4");
-		contentPane.add(btnChoose, "1, 1, left, center");
-		
-		btnChoose.addActionListener(new ActionListener() {
+				
+				btnChoose = new JButton("Choose .mp4");
+				contentPane.add(btnChoose, "1, 2, left, center");
+				
+				btnChoose.addActionListener(new ActionListener() {
 	      public void actionPerformed(ActionEvent ae) {
 	        JFileChooser fileChooser = new JFileChooser();
 	        FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -118,25 +126,28 @@ public class Main extends JFrame{
 	        }
 	      }
 	    });
-		
-		textField = new JTextField();
-		contentPane.add(textField, "2, 1, left, center");
-		textField.setColumns(25);
-		
-		textField_1 = new JTextField();
-		contentPane.add(textField_1, "2, 2, left, center");
-		textField_1.setColumns(25);
-		
-		txtEncryptionCode = new JTextField();
-		txtEncryptionCode.setToolTipText("Passphase (Code)");
-		
-		contentPane.add(txtEncryptionCode, "2, 4, fill, default");
-		txtEncryptionCode.setColumns(25);
-	
-		
-		JButton button = new JButton("Convert");
-		button.setVerticalAlignment(SwingConstants.BOTTOM);
-		contentPane.add(button, "2, 5, center, center");
+				
+				textField = new JTextField();
+				contentPane.add(textField, "2, 2, left, center");
+				textField.setColumns(25);
+				
+				textField_1 = new JTextField();
+				contentPane.add(textField_1, "2, 3, left, center");
+				textField_1.setColumns(25);
+				
+				txtEncryptionCode = new JTextField();
+				txtEncryptionCode.setToolTipText("Passphase (Code)");
+				
+				contentPane.add(txtEncryptionCode, "2, 4, left, center");
+				txtEncryptionCode.setColumns(25);
+			
+				
+				JButton button = new JButton("Convert");
+				button.setVerticalAlignment(SwingConstants.BOTTOM);
+				contentPane.add(button, "2, 5, center, center");
+				
+				lblmkhuda = DefaultComponentFactory.getInstance().createTitle("@mkhuda (2015)");
+				contentPane.add(lblmkhuda, "1, 10");
 		button.addActionListener(new ActionListener(){
 
 			@Override
@@ -165,8 +176,8 @@ public class Main extends JFrame{
 		} else {
 			JOptionPane.showMessageDialog(null, "Converting: "+source+" => "+out);
 		    final byte[] buf = new byte[8192];
-		    final Cipher c = Cipher.getInstance("AES/CTR/PKCS5Padding");
-		    c.init(Cipher.ENCRYPT_MODE, new SecretKeySpec("1234567890123456".getBytes(), "AES"), new IvParameterSpec(new byte[16]));
+		    final Cipher c = Cipher.getInstance("AES/CFB/NoPadding");
+		    c.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(bonjour.getBytes(), "AES"), new IvParameterSpec(new byte[16]));
 		    final InputStream is = new FileInputStream(source);
 		    final OutputStream os = new CipherOutputStream(new FileOutputStream(out), c);
 		    while (true) {
