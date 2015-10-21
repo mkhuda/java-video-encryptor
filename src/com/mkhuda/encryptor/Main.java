@@ -122,7 +122,7 @@ public class Main extends JFrame{
 	          String selected = selectedFile.getAbsolutePath();
 	          String outputFile = selectedFile.getParent();
 	          textField.setText(selected);
-	          textField_1.setText(outputFile+"output.mp4");
+	          textField_1.setText(outputFile+"\\output.mp4");
 	        }
 	      }
 	    });
@@ -172,7 +172,7 @@ public class Main extends JFrame{
 		code = txtEncryptionCode.getText();
 		String bonjour = new String(code);
 		if(!(bonjour.length() == 16)) {
-			JOptionPane.showMessageDialog(null, "Code must 16 length character");
+			JOptionPane.showMessageDialog(null, "Code must 16 length character. (Your length total: "+bonjour.length()+")");
 		} else {
 			JOptionPane.showMessageDialog(null, "Converting: "+source+" => "+out);
 		    final byte[] buf = new byte[8192];
