@@ -14,6 +14,7 @@ Build yourself or run the **app.jar** to try it.
 
 #Changelog
 **v1.1**
+- Linux Fixed Width
 - Fixed last backslash before output filename
 - Change Crypto into AES/CFB/NoPadding
 
