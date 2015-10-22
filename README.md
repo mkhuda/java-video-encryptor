@@ -12,6 +12,8 @@ You can use this library for web or mobile video local/streaming library that su
 
 Build yourself or run the **app.jar** to try it.
 
+*i will make for decrypt version as soon*
+
 #Changelog
 **v1.1**
 - Linux Fixed Width
